@@ -5,6 +5,13 @@ import java.util.Scanner;
 public class Main {
 
     static final String FILE_NAME = "players.txt";
+
+    /**
+     * the purpose of the heapSort method is to put an array into a heap. By
+     * enforcing heap property integrity, it will become ordered when read and
+     * inserted back into the array
+     * @param pa
+     */
     public static void heapSort(Player[] pa) {
         PQHeap heap = new PQHeap();
         System.out.println("heapsort started");
@@ -12,7 +19,6 @@ public class Main {
             heap.add(pa[i]);
         }
 
-        heap.printFirst10();
         System.out.println("part 2");
         for (int i = 0; i < pa.length; i++) {
             pa[i] = heap.getHighestScorePlayer();
@@ -46,10 +52,29 @@ public class Main {
         }
 
         heapSort(playerArray);
+
         for (int i = 0; i < playerArray.length; i++) {
-            System.out.println(i + ": " + playerArray[i].getName() + ", " + playerArray[i].getScore());
+            System.out.println((i + 1) + ": " + playerArray[i].getName() + ", " + playerArray[i].getScore());
         }
 
+
+
+        // code to ensure copy and clone constructors are working.
+        PQHeap baseHeap = new PQHeap();
+        for (int i = 0; i < 10; i++) {
+            baseHeap.add(new Player("Test", i));
+        }
+
+        PQHeap copyConstructor = new PQHeap(baseHeap);
+
+        PQHeap clonedConstructor = baseHeap.createClone();
+
+        System.out.println("Base heap");
+        baseHeap.printFirstTen();
+        System.out.println("Heap produced with copy constructor");
+        copyConstructor.printFirstTen();
+        System.out.println("Heap produced with clone constructor");
+        clonedConstructor.printFirstTen();
 
     }
 }

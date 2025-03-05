@@ -1,13 +1,10 @@
 public class Player {
-    /**
-     * member variables
-     */
+
+    // member variables
     protected String name;
     protected int score;
 
-    /**
-     * constructors
-     */
+    // member variables
     public Player() {
         name = "Player";
         score = 0;
